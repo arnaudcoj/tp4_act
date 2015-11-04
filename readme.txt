@@ -13,6 +13,8 @@ Pour l'implémentation nous utiliserons une liste contenant les villes dans l'or
 
 La taille d'un certificat seras donc égale à n (le nombre de villes) +1 , il est donc bien borné polynomialement par rapport à la taille de l'entrée
 
+//////////////////////////algorithme de vérification/////////////////////////////
+
 2) 1. 
 l1 = liste contenant les villes de taille n
 l2 = nouvelle liste contenant l'itinéraire
@@ -35,3 +37,4 @@ retourne l2
 Parce qu'on considère que l'aléatoire est bien aléatoire, du coup toutes les villes ont la même probabilité d'être tiré au même moment.
 
 2.
+Il s'agit de vérifier avec notre algorithme que le certificat générée est valide ou non
