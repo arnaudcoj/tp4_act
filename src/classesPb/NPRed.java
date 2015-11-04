@@ -6,7 +6,9 @@ abstract public NP red();
 
 public Certificat cert() {return red().cert();}
 
-public boolean estCorrect(Certificat cert) {//A COMPLETER
-    ;}
+public boolean estCorrect(Certificat cert) {
+    System.out.println("// ACOMPLETER");
+    return false;
+    }
 
 }

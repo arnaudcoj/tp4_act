@@ -14,7 +14,8 @@ public abstract class NP extends ExpTime{
 //algo exponentiel de decision de la propriete basee sur l'enumeration
 // NP est inclus dans EXPTime	
 	public boolean aUneSolution() {
-		// ACOMPLETER
+	    System.out.println("// ACOMPLETER");
+	    return false;
     }
 
 	
@@ -22,7 +23,8 @@ public abstract class NP extends ExpTime{
 //si il existe une solution AU MOINS UNE execution retourne Vrai
 //si il n'en existe pas TOUTES les executions retournent faux!
 	public boolean aUneSolutionNonDeterministe() {
-     	 ACOMPLETER
+     	 System.out.println("// ACOMPLETER");
+	 return false;
     }
 }
  
