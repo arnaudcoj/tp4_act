@@ -1,11 +1,18 @@
-CC=javac
+PKG := $(wildcard src/*)
+SRC := $(wildcard src/$(PKG)/*.java)
+OUT := bin/$(PKG:src/%=%)
 
-all: TSP.class
+LIST := $(SRC:src/%.java=$(OUT)/%.class)
 
-%.class: %.java
-	javac $^
+all: $(LIST)
+
+$(OUT)/%.class: src/%.java | $(OUT)
+	javac -d $| $<
+
+$(OUT):
+	@mkdir $@
 
 $PHONY: clean 
 
 clean:
-	rm -rf *~ *.class
+	rm -rf *~ bin/*/*.class
