@@ -38,3 +38,11 @@ Parce qu'on considère que l'aléatoire est bien aléatoire, du coup toutes les 
 
 2.
 Il s'agit de vérifier avec notre algorithme que le certificat générée est valide ou non
+
+
+3)1. un certificat peut prendre n! valeurs
+
+2. Nous proposons l'ordre lexycographique
+
+3. On génère chaque certificat, pour chacun d'entre eux on vérifie que la longueur de la tournée est inférieur à la valeur demander, si c'est le cas on l'ajoute sinon on vérifie le certificat suivant.
+A la fin on vérifie que la liste de solution n'est pas vide et si c'est le cas c'est qu'il y a une solution au problème.
