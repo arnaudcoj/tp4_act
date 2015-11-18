@@ -38,3 +38,20 @@ Parce qu'on considère que l'aléatoire est bien aléatoire, du coup toutes les 
 
 2.
 Il s'agit de vérifier avec notre algorithme que le certificat générée est valide ou non
+
+==========================
+2  Réductions polynomiales
+
+Q4.1)
+  TSP renvoie les plus petit des cycles hamiltoniens possibles. La principe de HamiltonCycle est de trouver un cycle hamiltonien, quelqu'il soit. Ainsi, nous pouvons utiliser TSP, sans nous soucier de la taille du cycle, pour résoudre HamiltonCycle. HamiltonCycle se réduit donc polynomialement dans TSP sans modifier la donnée.
+
+Q4.3)
+  TSP est NP-Red
+
+Q4.4)
+  Non car la taille du cycle est prise en compte pour la résolution de TSP et que HamiltonCycle ne renvoie pas forcément le plus petit.
+
+Q5.
+  Les conditions pour que HamiltonCycle soit vraie sont D[ham(i)][ham(i + 1)] = true et D[ham(i)][0] = true, pour tout 0 <= i <= n-2.
+  HamiltonPath ne connait qu'une condition comprise dans HamiltonCycle : D[ham(i)][ham(i + 1)] = true, pour tout 0 <= i <= n-2.
+  Résoudre HamiltonCycle revient à résoudre HamiltonPath en rajoutant un sommet vers lequel tous les points convergent et qui mène à tous les sommets afin de transformer un éventuel chemin en cycle.
