@@ -51,7 +51,10 @@ Q4.3)
 Q4.4)
   Non car la taille du cycle est prise en compte pour la résolution de TSP et que HamiltonCycle ne renvoie pas forcément le plus petit.
 
-Q5.
+Q5.1)
   Les conditions pour que HamiltonCycle soit vraie sont D[ham(i)][ham(i + 1)] = true et D[ham(i)][0] = true, pour tout 0 <= i <= n-2.
   HamiltonPath ne connait qu'une condition comprise dans HamiltonCycle : D[ham(i)][ham(i + 1)] = true, pour tout 0 <= i <= n-2.
   Résoudre HamiltonCycle revient à résoudre HamiltonPath en rajoutant un sommet vers lequel tous les points convergent et qui mène à tous les sommets afin de transformer un éventuel chemin en cycle.
+
+Q5.3)
+  HamiltonPath se réduit dans HamiltonCycle, qui lui-même se réduit dans TSP. Par transitivité, HamiltonPath se réduit dans TSP.
