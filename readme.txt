@@ -15,7 +15,7 @@ La taille d'un certificat seras donc égale à n (le nombre de villes) +1 , il e
 
 //////////////////////////algorithme de vérification/////////////////////////////
 
-2) 1. 
+2) 1.
 l1 = liste contenant les villes de taille n
 l2 = nouvelle liste contenant l'itinéraire
 tmp = variable temporaire pour le dernier élément de l'itinéraire
@@ -51,10 +51,35 @@ Q4.3)
 Q4.4)
   Non car la taille du cycle est prise en compte pour la résolution de TSP et que HamiltonCycle ne renvoie pas forcément le plus petit.
 
-Q5.1)
+Q5.
   Les conditions pour que HamiltonCycle soit vraie sont D[ham(i)][ham(i + 1)] = true et D[ham(i)][0] = true, pour tout 0 <= i <= n-2.
   HamiltonPath ne connait qu'une condition comprise dans HamiltonCycle : D[ham(i)][ham(i + 1)] = true, pour tout 0 <= i <= n-2.
   Résoudre HamiltonCycle revient à résoudre HamiltonPath en rajoutant un sommet vers lequel tous les points convergent et qui mène à tous les sommets afin de transformer un éventuel chemin en cycle.
 
-Q5.3)
-  HamiltonPath se réduit dans HamiltonCycle, qui lui-même se réduit dans TSP. Par transitivité, HamiltonPath se réduit dans TSP.
+==========================
+3 Optimisation versus Décision
+
+Q7.
+  TSP est plus simple que TSPOpt1. En effet, alors que TSP se contente de chercher une longueur inférieure ou égale au l donné, TSPOpt1 cherche le plus petit l possible, ce qui peut prendre plus d'itérations que pour TSP.
+  TSPOpt1 étant P et TSP étant moins "exigeant", ce dernier est donc P.
+
+  TSPOpt2 fonctionne de la même manière que TSPOpt2, à ceci près qu'il renvoie la plus petite tournée possible au lieu de sa longueur.
+  Ainsi, TSP est P si TSPOpt2 est P également.
+
+Q8.
+  Un exemple d'implantation de TSPOpt1 pourrait être une sorte de recherche dichotomique :
+    lmax = longueur maximale possible (on peut l'obtenir en additionnant toutes les distances dans la matrice)
+    lmin = 0
+    Tant que lmin < lmax
+      l = lmax / 2
+      Si(TSP(l))
+        lmin = l + 1
+      sinon
+        lmax = l - 1
+
+  Le nombre d'appels est log(maximum des distances) (car dichotomie) et est donc limité. TSP étant polynomial, alors TSPOpt1 est polynomial.
+
+Q9.
+  Il a été dit Q7 que comme TSPOpt2 agissait de la même manière que TSPOpt1 et que TSPOpt1 serait P si TSP était P.
+  En Q8 on a montré qu'il était possible d'implémenter TSPOpt1 de façon à ce qu'il soit P.
+  Par transitivité, on peut donc conclure que TSPOpt2 est P si TSP est P aussi.
