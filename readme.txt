@@ -63,8 +63,8 @@ Q7.
   TSP est plus simple que TSPOpt1. En effet, alors que TSP se contente de chercher une longueur inférieure ou égale au l donné, TSPOpt1 cherche le plus petit l possible, ce qui peut prendre plus d'itérations que pour TSP.
   TSPOpt1 étant P et TSP étant moins "exigeant", ce dernier est donc P.
 
-  TSPOpt2 fonctionne de la même manière que TSPOpt2, à ceci près qu'il renvoie la plus petite tournée possible au lieu de sa longueur.
-  Ainsi, TSP est P si TSPOpt2 est P également.
+  TSPOpt2 fonctionne de la même manière que TSPOpt1, à ceci près qu'il renvoie la plus petite tournée possible au lieu de sa longueur.
+  Ainsi par transitivité, TSP est P si TSPOpt2 est P également.
 
 Q8.
   Un exemple d'implantation de TSPOpt1 pourrait être une sorte de recherche dichotomique :
@@ -77,9 +77,8 @@ Q8.
       sinon
         lmax = l - 1
 
-  Le nombre d'appels est log(maximum des distances) (car dichotomie) et est donc limité. TSP étant polynomial, alors TSPOpt1 est polynomial.
+  La longueur maximale est calculée en O(n²) car on parcourt toute la matrice. Le nombre d'appels à TSP est log(maximum des distances) (car dichotomie) et est donc limité. TSP étant P, alors TSPOpt1 est P.
 
 Q9.
-  Il a été dit Q7 que comme TSPOpt2 agissait de la même manière que TSPOpt1 et que TSPOpt1 serait P si TSP était P.
-  En Q8 on a montré qu'il était possible d'implémenter TSPOpt1 de façon à ce qu'il soit P.
-  Par transitivité, on peut donc conclure que TSPOpt2 est P si TSP est P aussi.
+  On utilise TSPOpt1 pour déterminer la longueur minimale.
+  Il suffit ensuite de coder un algorithme identique à TSP (que l'on considère P) mais qui renvoie cette fois-ci le parcours trouvé au lieu de renvoyer Oui.
