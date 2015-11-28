@@ -1,7 +1,8 @@
 package travellingSalemansProblem;
-import java.io.*;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import java.util.Random;
 
 
 public class testTSP{  
@@ -13,6 +14,16 @@ public class testTSP{
 	    cert.alea();
 	    cert.display();
 	    System.out.println(tsp.estCorrect(cert));
+	    cert.reset();
+	    cert.display();
+	    System.out.println(cert.estDernier());
+	    List<Integer> tmpCert = new ArrayList<Integer>();
+	    tmpCert.add(2);
+	    tmpCert.add(1);
+	    tmpCert.add(0);
+	    cert.setCert(tmpCert);
+	    cert.display();
+	    System.out.println(cert.estDernier());
 	    
 	 	//saisie du probleme
 		if (arg.length < 3)

@@ -44,19 +44,25 @@ public class CertificatTSP implements Certificat{
 
     //affecte au  certificat la premiere valeur pour l'ordre choisi
     public void reset() {
-	System.out.println("");
+    	for (int i = 0 ; i<cert.size() ; i++) {
+    		cert.remove(0);
+    		cert.add(i);
+    	}
     }
 	
     //retourne vrai si la valeur est la derniere dans l'ordre choisi, faux sinon
     public boolean estDernier() {
-	System.out.println("");
-	return false;
+    	for (int i = 0; i<cert.size() ; i++) {
+    		if (cert.get(i) != cert.size() - i - 1)
+    			return false;
+    	}
+    	return true;
     }
 	
     //modifie la valeur du certificat en la suivante pour l'ordre
     //comportement non defini si la certificat est le dernier
     public void suivant() {
-	System.out.println("");
+    	System.out.println("");
     }
 
     
@@ -67,6 +73,10 @@ public class CertificatTSP implements Certificat{
     
     public int getI(int i) {
     	return cert.get(i);
+    }
+    
+    public void setCert(List<Integer> c) {
+    	this.cert = c;
     }
     
 }
