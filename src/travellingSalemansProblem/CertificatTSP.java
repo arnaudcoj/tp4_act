@@ -65,4 +65,8 @@ public class CertificatTSP implements Certificat{
 		this.tsp = tsp;
     }
     
+    public int getI(int i) {
+    	return cert.get(i);
+    }
+    
 }

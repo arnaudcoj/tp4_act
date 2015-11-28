@@ -8,10 +8,11 @@ public class testTSP{
 
     public static void main(String[] arg) throws Exception {
     	int[][] distances = {{0,2,3},{2,0,5},{4,5,0}};
-    	TSP tsp = new TSP(3, distances, 50);
+    	TSP tsp = new TSP(3, distances, 1);
 	    CertificatTSP cert = new CertificatTSP(tsp);
 	    cert.alea();
 	    cert.display();
+	    System.out.println(tsp.estCorrect(cert));
 	    
 	 	//saisie du probleme
 		if (arg.length < 3)
