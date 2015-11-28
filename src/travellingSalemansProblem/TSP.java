@@ -7,17 +7,18 @@ public class TSP extends NP{
     public int longueurTournee;
 
     public TSP(int nb, int dist[][], int lg){
-	this.nbVilles=nb;
-	this.distances=dist;
-	this.longueurTournee=lg;
+		this.nbVilles=nb;
+		this.distances=dist;
+		this.longueurTournee=lg;
     }
 
     public CertificatTSP cert() { 
-	return new CertificatTSP(this);
+    	return new CertificatTSP(this);
     }
 
     public boolean estCorrect(Certificat c){
-    	System.out.println("to be implemented");
-	return false;
+    	int distance;
+	
+    	return false;
     }
 }

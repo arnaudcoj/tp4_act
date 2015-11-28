@@ -1,7 +1,6 @@
 package travellingSalemansProblem;
 
 import java.util.Random;
-import java.io.*;
 import java.util.List;
 
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import classesPb.*;
 
 public class CertificatTSP implements Certificat{
     protected List<Integer> cert;
+    protected TSP tsp;
 
     //saisie au clavier de la valeur du certificat
     public void saisie() {
@@ -17,13 +17,27 @@ public class CertificatTSP implements Certificat{
 	
     //affichage du certificat
     public void display() {
-	System.out.println("");
+		System.out.println("Chemin de la tournée : ");
+		for ( int ville : cert) {
+		    System.out.print(ville + " -> ");
+		}
+		System.out.println(cert.get(0));
     }
 	
     //modification aleatoire de la valeur du certificat
     //chaque valeur possible doit pouvoir etre generee
     public  void alea() {
-	System.out.println("");
+		List<Integer> tmpList = new ArrayList<Integer>();
+		int randRes;
+		Random rand = new Random();
+		for (int i = 0; i < this.tsp.nbVilles;i++) {
+		    tmpList.add(i);
+		}
+		while (!tmpList.isEmpty()) {
+		    randRes = rand.nextInt(tmpList.size());
+		    cert.add(tmpList.get(randRes));
+		    tmpList.remove(randRes);
+		}
     }
 	
     //on munira les valeurs possibles du certificat d'un ordre total
@@ -47,27 +61,8 @@ public class CertificatTSP implements Certificat{
 
     
     public CertificatTSP(TSP tsp) {
-	this.cert = new ArrayList<Integer>();
-	List<Integer> tmpList = new ArrayList<Integer>();
-	int tmp, randRes;
-	tmp = -1;
-	Random rand = new Random();
-	for (int i = 0; i < tsp.nbVilles;i++) {
-	    tmpList.add(i);
-	}
-	if (!tmpList.isEmpty()) {
-	    randRes = rand.nextInt(tmpList.size());
-	    cert.add(tmpList.get(randRes));
-	    tmpList.remove(randRes);
-	    tmp = randRes;
-	}
-	while (!tmpList.isEmpty()) {
-	    randRes = rand.nextInt(tmpList.size());
-	    cert.add(tmpList.get(randRes));
-	    tmpList.remove(randRes);
-	}
-	if (tmp != -1) 
-	    cert.add(tmp);
+		this.cert = new ArrayList<Integer>();
+		this.tsp = tsp;
     }
     
 }
