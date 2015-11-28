@@ -2,11 +2,13 @@ package travellingSalemansProblem;
 
 import java.util.Random;
 import java.io.*;
+import java.util.List;
 
+import java.util.ArrayList;
 import classesPb.*;
 
 public class CertificatTSP implements Certificat{
-    // A completer
+    protected List<Integer> cert;
 
     //saisie au clavier de la valeur du certificat
     public void saisie() {
@@ -45,7 +47,27 @@ public class CertificatTSP implements Certificat{
 
     
     public CertificatTSP(TSP tsp) {
-	System.out.println("to be implemented");
+	this.cert = new ArrayList<Integer>();
+	List<Integer> tmpList = new ArrayList<Integer>();
+	int tmp, randRes;
+	tmp = -1;
+	Random rand = new Random();
+	for (int i = 0; i < tsp.nbVilles;i++) {
+	    tmpList.add(i);
+	}
+	if (!tmpList.isEmpty()) {
+	    randRes = rand.nextInt(tmpList.size());
+	    cert.add(tmpList.get(randRes));
+	    tmpList.remove(randRes);
+	    tmp = randRes;
+	}
+	while (!tmpList.isEmpty()) {
+	    randRes = rand.nextInt(tmpList.size());
+	    cert.add(tmpList.get(randRes));
+	    tmpList.remove(randRes);
+	}
+	if (tmp != -1) 
+	    cert.add(tmp);
     }
     
 }
