@@ -1,10 +1,11 @@
 package travellingSalemansProblem;
 
-import java.util.Random;
-import java.util.List;
-
 import java.util.ArrayList;
-import classesPb.*;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
+import classesPb.Certificat;
 
 public class CertificatTSP implements Certificat{
     protected List<Integer> cert;
@@ -12,7 +13,12 @@ public class CertificatTSP implements Certificat{
 
     //saisie au clavier de la valeur du certificat
     public void saisie() {
-	System.out.println("");
+    	Scanner scan = new Scanner(System.in);
+    	System.out.println("Veuillez saisir la valeur du certificat");
+    	for (int i = 0; i < tsp.nbVilles ; i++) {
+    		int ville = Integer.parseInt(scan.nextLine());
+    		this.cert.add(ville);
+    	}
     }
 	
     //affichage du certificat
@@ -44,16 +50,16 @@ public class CertificatTSP implements Certificat{
 
     //affecte au  certificat la premiere valeur pour l'ordre choisi
     public void reset() {
-    	for (int i = 0 ; i<cert.size() ; i++) {
-    		cert.remove(0);
+    	cert.removeAll(cert);
+    	for (int i = 0 ; i<tsp.nbVilles ; i++) {
     		cert.add(i);
     	}
     }
 	
     //retourne vrai si la valeur est la derniere dans l'ordre choisi, faux sinon
     public boolean estDernier() {
-    	for (int i = 0; i<cert.size() ; i++) {
-    		if (cert.get(i) != cert.size() - i - 1)
+    	for (int i = 0; i<tsp.nbVilles ; i++) {
+    		if (cert.get(i) != tsp.nbVilles - i - 1)
     			return false;
     	}
     	return true;
