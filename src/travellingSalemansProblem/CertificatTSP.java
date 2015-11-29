@@ -68,7 +68,30 @@ public class CertificatTSP implements Certificat{
     //modifie la valeur du certificat en la suivante pour l'ordre
     //comportement non defini si la certificat est le dernier
     public void suivant() {
-    	System.out.println("");
+    	int i, j, tmp;
+    	if (this.estDernier()) 
+    		return;
+	    
+	    i = tsp.nbVilles - 1;
+	    while (i > 0 && cert.get(i-1) >= cert.get(i))
+	        i--;
+	    
+	    j = tsp.nbVilles - 1;
+	    while (cert.get(j) <= cert.get(i-1))
+	        j--;
+	    
+	    tmp = cert.get(i-1);
+	    cert.set(i-1, cert.get(j));
+	    cert.set(j, tmp);
+	    
+	    j = tsp.nbVilles - 1;
+	    while (i < j) {
+	        tmp = cert.get(i);
+	        cert.set(i, cert.get(j));
+	        cert.set(j, tmp);
+	        i++;
+	        j--;
+	    }
     }
 
     

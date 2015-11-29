@@ -12,8 +12,11 @@ public class testTSP{
     	TSP tsp = new TSP(3, distances, 1);
 	    CertificatTSP cert = new CertificatTSP(tsp);
 	    //cert.alea();
-	    cert.saisie();
-	    cert.display();
+	    cert.reset();
+	    while (!cert.estDernier()) {
+	    	cert.suivant();
+	    	cert.display();
+	    }
 	    /*System.out.println(tsp.estCorrect(cert));
 	    cert.reset();
 	    cert.display();
