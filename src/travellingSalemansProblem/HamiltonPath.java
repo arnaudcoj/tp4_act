@@ -48,7 +48,7 @@ public class HamiltonPath extends NPRed{
       dist[dist.length -1][i] = 0;
 
     //Retourne un TSP avec les données modifiées ci-dessus autorisant la taille de chemin maximale
-    return new TSP(nb, dist, Integer.MAX_VALUE);
+    return new TSP(nb, dist, 0);
   }
 
 

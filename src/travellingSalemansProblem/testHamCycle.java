@@ -3,20 +3,21 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import classesPb.Certificat;
 
-
-public class testTSP{  
+public class testHamCycle{  
 
     public static void main(String[] arg) throws Exception {
     	int[][] distances = {{0,2,3},{2,0,5},{4,5,0}};
-    	TSP tsp = new TSP(3, distances, 1);
-	    CertificatTSP cert = new CertificatTSP(tsp);
+    	/*HamiltonCycle ham = new HamiltonCycle(3, distances, 1);
+	CertificatTSP cert = new CertificatTSP(ham);
 	    //cert.alea();
 	    cert.reset();
 	    while (!cert.estDernier()) {
 	    	cert.suivant();
 	    	cert.display();
 	    }
+	*/
 	    /*System.out.println(tsp.estCorrect(cert));
 	    cert.reset();
 	    cert.display();
@@ -31,33 +32,32 @@ public class testTSP{
 	    System.out.println(tsp.aUneSolutionNonDeterministe());*/
 	    
 	 	//saisie du probleme
-		if (arg.length < 3)
-		    System.out.println("java testTSP  mode file.atsp lg");
+		if (arg.length < 2)
+		    System.out.println("java testHamCycle  mode file.ham");
 		else {
-		    int lg=Integer.parseInt(arg[2]);	
 		    //le probleme dans un fichier de donnees
 		    Scanner donnee = new Scanner (new FileReader(arg[1]));
 		    for (int i=0; i<3; i++) donnee.nextLine();
 		    donnee.next();
 		    int nbv= donnee.nextInt();	 
 		    for (int i=0; i<4; i++) donnee.nextLine();
-		    int D[][]=new int[nbv][nbv];
+		    boolean D[][]=new boolean[nbv][nbv];
 		    for (int i=0; i<nbv; i++){
-		    	for (int j=0; j<nbv; j++) {D[i][j]= donnee.nextInt();System.out.println(D[i][j]+" ");}
+		    	for (int j=0; j<nbv; j++) {D[i][j]= donnee.nextBoolean(); System.out.println(D[i][j]+" ");}
 				System.out.println();
 			}
-		    TSP pb=new TSP(nbv,D,lg);
+		    HamiltonCycle pb=new HamiltonCycle(nbv,D);
 		    System.out.println(arg[0]);
 		    // les differents modes
 		    if (arg[0].equals("-verif")) { 
-				CertificatTSP c= pb.cert();
+				Certificat c= pb.cert();
 				System.out.print("Proposez un certificat;");
 				c.saisie();
 				System.out.print("votre certificat est-il correct? ");
 				System.out.println(pb.estCorrect(c));
 		    }
 		    else if (arg[0].equals("-nondet")) {
-		    	System.out.println("le problème a-t-il une solution non déterministe ? " + pb.aUneSolutionNonDeterministe());
+		    	System.out.println(pb.aUneSolutionNonDeterministe());
 		    }
 		    else if (arg[0].equals("-exhaust"))  { 
 		    	System.out.println("le probleme a-t-il une solution?: ");System.out.println(pb.aUneSolution());
