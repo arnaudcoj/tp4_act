@@ -13,9 +13,7 @@ Pour l'implémentation nous utiliserons une liste contenant les villes dans l'or
 
 La taille d'un certificat seras donc égale à n (le nombre de villes) +1 , il est donc bien borné polynomialement par rapport à la taille de l'entrée
 
-//////////////////////////algorithme de vérification/////////////////////////////
-
-2) 1.
+2) 1. 
 l1 = liste contenant les villes de taille n
 l2 = nouvelle liste contenant l'itinéraire
 tmp = variable temporaire pour le dernier élément de l'itinéraire
@@ -31,15 +29,23 @@ tant que l1 non vide
     ajoute r à l2
     supprime r à l1
 fin tant que
-ajoute tmp à l2
+si tmp n'est pas null
+	ajoute tmp à l2
 retourne l2
 
-Parce qu'on considère que l'aléatoire est bien aléatoire, du coup toutes les villes ont la même probabilité d'être tiré au même moment.
+Parce qu'on considère que l'aléatoire est bien aléatoire, du co
 
-2.
-Il s'agit de vérifier avec notre algorithme que le certificat générée est valide ou non
 
-==========================
+  2.
+  Il s'agit de vérifier avec notre algorithme que le certificat générée est valide ou non
+
+3)1. un certificat peut prendre n! valeurs
+
+  2. Nous proposons l'ordre lexycographique
+
+  3. On génère chaque certificat, pour chacun d'entre eux on vérifie que la longueur de la tournée est inférieur à la valeur demander, si c'est le cas on l'ajoute sinon on vérifie le certificat suivant.
+A la fin on vérifie que la liste de solution n'est pas vide et si c'est le cas c'est qu'il y a une solution au problème.
+
 2  Réductions polynomiales
 
 Q4.1)
@@ -56,7 +62,6 @@ Q5.
   HamiltonPath ne connait qu'une condition comprise dans HamiltonCycle : D[ham(i)][ham(i + 1)] = true, pour tout 0 <= i <= n-2.
   Résoudre HamiltonCycle revient à résoudre HamiltonPath en rajoutant un sommet vers lequel tous les points convergent et qui mène à tous les sommets afin de transformer un éventuel chemin en cycle.
 
-==========================
 3 Optimisation versus Décision
 
 Q7.

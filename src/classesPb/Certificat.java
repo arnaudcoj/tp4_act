@@ -23,4 +23,7 @@ public interface Certificat {
 	//modifie la valeur du certificat en la suivante pour l'ordre
 	//comportement non defini si la certificat est le dernier
 	public void suivant();
+	
+	//retourne l'élément i de la liste
+	public int getI(int i);
 }

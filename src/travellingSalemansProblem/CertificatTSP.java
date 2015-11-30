@@ -1,51 +1,111 @@
 package travellingSalemansProblem;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-import java.io.*;
+import java.util.Scanner;
 
-import classesPb.*;
+import classesPb.Certificat;
 
 public class CertificatTSP implements Certificat{
-    // A completer
+    protected List<Integer> cert;
+    protected TSP tsp;
 
     //saisie au clavier de la valeur du certificat
     public void saisie() {
-	System.out.println("");
+    	Scanner scan = new Scanner(System.in);
+    	System.out.println("Veuillez saisir la valeur du certificat");
+    	for (int i = 0; i < tsp.nbVilles ; i++) {
+    		int ville = Integer.parseInt(scan.nextLine());
+    		this.cert.add(ville);
+    	}
     }
 	
     //affichage du certificat
     public void display() {
-	System.out.println("");
+		System.out.println("Chemin de la tournée : ");
+		for ( int ville : cert) {
+		    System.out.print(ville + " -> ");
+		}
+		System.out.println(cert.get(0));
     }
 	
     //modification aleatoire de la valeur du certificat
     //chaque valeur possible doit pouvoir etre generee
     public  void alea() {
-	System.out.println("");
+		List<Integer> tmpList = new ArrayList<Integer>();
+		int randRes;
+		Random rand = new Random();
+		for (int i = 0; i < this.tsp.nbVilles;i++) {
+		    tmpList.add(i);
+		}
+		while (!tmpList.isEmpty()) {
+		    randRes = rand.nextInt(tmpList.size());
+		    cert.add(tmpList.get(randRes));
+		    tmpList.remove(randRes);
+		}
     }
 	
     //on munira les valeurs possibles du certificat d'un ordre total
 
     //affecte au  certificat la premiere valeur pour l'ordre choisi
     public void reset() {
-	System.out.println("");
+    	cert.removeAll(cert);
+    	for (int i = 0 ; i<tsp.nbVilles ; i++) {
+    		cert.add(i);
+    	}
     }
 	
     //retourne vrai si la valeur est la derniere dans l'ordre choisi, faux sinon
     public boolean estDernier() {
-	System.out.println("");
-	return false;
+    	for (int i = 0; i<tsp.nbVilles ; i++) {
+    		if (cert.get(i) != tsp.nbVilles - i - 1)
+    			return false;
+    	}
+    	return true;
     }
 	
     //modifie la valeur du certificat en la suivante pour l'ordre
     //comportement non defini si la certificat est le dernier
     public void suivant() {
-	System.out.println("");
+    	int i, j, tmp;
+    	if (this.estDernier()) 
+    		return;
+	    
+	    i = tsp.nbVilles - 1;
+	    while (i > 0 && cert.get(i-1) >= cert.get(i))
+	        i--;
+	    
+	    j = tsp.nbVilles - 1;
+	    while (cert.get(j) <= cert.get(i-1))
+	        j--;
+	    
+	    tmp = cert.get(i-1);
+	    cert.set(i-1, cert.get(j));
+	    cert.set(j, tmp);
+	    
+	    j = tsp.nbVilles - 1;
+	    while (i < j) {
+	        tmp = cert.get(i);
+	        cert.set(i, cert.get(j));
+	        cert.set(j, tmp);
+	        i++;
+	        j--;
+	    }
     }
 
     
     public CertificatTSP(TSP tsp) {
-	System.out.println("to be implemented");
+		this.cert = new ArrayList<Integer>();
+		this.tsp = tsp;
+    }
+    
+    public int getI(int i) {
+    	return cert.get(i);
+    }
+    
+    public void setCert(List<Integer> c) {
+    	this.cert = c;
     }
     
 }
